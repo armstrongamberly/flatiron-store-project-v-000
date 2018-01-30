@@ -1,0 +1,9 @@
+<% cart.line_items.each do |line_item| %>
+
+  <p><%= link_to line_item.item.title, item_path(line_item.item) %> | 
+  	<%= number_to_currency(line_item.item.price.to_f/100) %> | Quantity: <%= line_item.quantity %> | Inventory: <%=line_item.item.inventory%> | <% if line_item.item.inventory < 5 %>
+    <strong>There are only <%= line_item.item.inventory %> left in stock.</strong>
+  <% end %> </p>
+<% end %>
+
+<h3>Order total: <strong><%= number_to_currency(current_user.current_cart.total.to_f/100) %></strong> </h3>
